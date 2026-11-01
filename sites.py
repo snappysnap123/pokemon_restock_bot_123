@@ -28,7 +28,6 @@ def parse_hobbylords(html: str) -> list:
     soup = BeautifulSoup(html, "html.parser")
     items = []
     
-    # Based on your screenshot, this is the main container for each product
     for card in soup.select('div.product-card-container'):
         # Find the link
         link_el = card.select_one('a[href*="/products/single/"]')
@@ -43,7 +42,7 @@ def parse_hobbylords(html: str) -> list:
         # We use the last part of the URL as the ID
         pid = link.rstrip('/').split('/')[-1]
         
-        # Find the title. In your screenshot, it's inside a <p> tag under the image.
+        # Find the title. 
         title_el = card.find('p')
         title = title_el.get_text(strip=True) if title_el else "Unknown Hobby Lords Product"
         
